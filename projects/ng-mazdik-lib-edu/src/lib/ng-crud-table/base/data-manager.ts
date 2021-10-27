@@ -25,6 +25,9 @@ export class DataManager extends DataTable {
       if (col.filterValues && typeof col.filterValues === 'string') {
         col.filterValues = this.service.getOptions.bind(this.service, col.filterValues);
       }
+      if (col.optionsUrl) {
+        this.service.getOptions(col.optionsUrl, null).then(res => col.options = res).catch(err => console.error(`Error al cargar ${col.optionsUrl}`, err));
+      }
     });
   }
 

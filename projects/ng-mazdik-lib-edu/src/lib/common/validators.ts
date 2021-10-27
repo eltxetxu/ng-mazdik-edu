@@ -1,11 +1,13 @@
 import { isBlank } from './utils';
 
+
 export interface Validation {
   required?: boolean;
   minLength?: number;
   maxLength?: number;
   pattern?: string | RegExp;
   descError?: string;
+  
 }
 
 export class Validators {
@@ -17,26 +19,31 @@ export class Validators {
 
   static validate(name: string, value: any, validation: Validation): string[] {
     const temp: string[] = [];
+    let error: string;
     if (!validation) {
       return temp;
     }
     const length: number = !isBlank(value) ? value.toString().length : 0;
 
     if (validation.required && isBlank(value)) {
-      temp.push(!validation.descError ? `${name} es obligatorio.` : validation.descError);
+      error =  `${name} es obligatorio.`;
+      if(!temp.includes(error)) temp.push(error);
     }
     if (validation.minLength && length < validation.minLength) {
-      temp.push(!validation.descError ? `${name} debe tener al menos ${validation.minLength} caracteres de largo. Tiene ${length}.` : validation.descError);
+      error= `${name} debe tener al menos ${validation.minLength} caracteres de largo. Tiene ${length}.`;
+      if(!temp.includes(error)) temp.push(error);
     }
     if (validation.maxLength && length > validation.maxLength) {
-      temp.push(!validation.descError ? `${name} no puede tener más de ${validation.maxLength} caracteres. Tiene ${length}.` : validation.descError);
+      error = `${name} no puede tener más de ${validation.maxLength} caracteres. Tiene ${length}.`;
+      if(!temp.includes(error)) temp.push(error);
     }
     if (validation.pattern && value) {
       const patternResult = Validators.patternValidate(name, value, validation.pattern, validation.descError);
       if (patternResult) {
-        temp.push(patternResult);
+        if(!temp.includes(patternResult)) temp.push(patternResult);
       }
     }
+  
     return temp;
   }
 
@@ -53,4 +60,5 @@ export class Validators {
     return regex.test(value) ? null : (!descError ? `${name} debe cumplir el patrón: ${regexStr}.` : descError);
   }
 
+  
 }

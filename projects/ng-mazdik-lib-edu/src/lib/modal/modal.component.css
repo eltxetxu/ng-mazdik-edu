@@ -30,7 +30,6 @@
   min-width: 16.25rem;
   min-height: 12.5rem;
   width:80%;
-  /* width: 31.25rem; */
 }
 
 .ui-modal-header {
@@ -48,8 +47,8 @@
 .ui-modal-body {
   position: relative;
   padding: .625rem 1rem;
-  max-height: calc(100vh - 12.5rem);
-  overflow-y: auto;
+   max-height: calc(100vh - 12.5rem); 
+   overflow-y: scroll; 
   -webkit-overflow-scrolling: touch;
 }
 

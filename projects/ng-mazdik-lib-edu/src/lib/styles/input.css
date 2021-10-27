@@ -54,3 +54,7 @@
 .dt-group {
   margin-bottom: 1rem;
 }
+
+.dt-input > option:disabled {
+  color: var(--dt-color-secondary-light);
+}

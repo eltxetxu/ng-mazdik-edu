@@ -44,12 +44,20 @@ export class ModalEditFormComponent implements OnInit {
 
   save(): void  {
     if (this.isNewItem) {
-      this.dataManager.create(this.dataManager.item);
+      this.dataManager.service.getItem(this.dataManager.item).then(item => {
+        if (!item) {
+          this.dataManager.create(this.dataManager.item);
+          this.childModal.hide();
+          this.cd.markForCheck();
+        } else {
+          alert(this.dataManager.messages.pkError);          
+        }
+      }).catch(e => console.error(e)); 
     } else {
       this.dataManager.update(this.dataManager.item);
+      this.childModal.hide();
+      this.cd.markForCheck();
     }
-    this.childModal.hide();
-    this.cd.markForCheck();
   }
 
   open(): void  {

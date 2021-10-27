@@ -42,7 +42,7 @@ export class BodyCellComponent implements OnInit, OnDestroy {
 
  @HostBinding('style.width.px')
  get width(): any {
-  if (this.cell.column.cellClass == 'action-cell') return;
+  //if (this.cell.column.cellClass == 'action-cell') return;
      return this.cell.column.width;
    }
 

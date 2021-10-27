@@ -41,6 +41,8 @@ export interface DtMessages {
   ok: string;
   columns: string;
   actions: string;
+  print: string;
+  pkError: string;
 }
 
 export class DtMessagesEn implements DtMessages {
@@ -86,6 +88,8 @@ export class DtMessagesEn implements DtMessages {
   ok = 'OK';
   columns = 'Columns';
   actions = 'Actions';
+  print = 'Print';
+  pkError = 'Element already exists';
 
   constructor(init?: Partial<DtMessagesEn>) {
     if (init) {
@@ -93,3 +97,58 @@ export class DtMessagesEn implements DtMessages {
     }
   }
 }
+
+export class DtMessagesEs implements DtMessages {
+    empty = 'No hay datos';
+    loading = 'Cargando...';
+    clearFilters = 'Limpiar todos los filtros';
+    create = 'Crear';
+    delete = 'Eliminar';
+    save = 'Guardar';
+    close = 'Cerrar';
+    titleCreate = 'Crear';
+    titleUpdate = 'Modificar';
+    titleDetailView = 'Vista detalle';
+    search = 'Buscar...';
+    selectAll = 'Selecionar todos';
+    clear = 'Limpiar';
+    equals = 'Igual';
+    notEqual = 'Distinto';
+    lessThan = 'Menor que';
+    lessThanOrEqual = 'Menor o igual a';
+    greaterThan = 'Mayor que';
+    greaterThanOrEqual = 'Mayor o igual a';
+    inRange = 'En rango';
+    contains = 'Contiene';
+    notContains = 'No contiene';
+    startsWith = 'Empieza con';
+    endsWith = 'Finaliza con';
+    lastYear = 'Último año';
+    lastMonth = 'Último mes';
+    lastDay = 'Último día';
+    lastHour = 'Última hora';
+    go = 'Ir';
+    column = 'Columna';
+    value = 'Valor';
+    export = 'Exportar';
+    refresh = 'Refrescar';
+    revertChanges = 'Deshacer Cambios';
+    duplicate = 'Duplicar';
+    cancel = 'Cancelar';
+    isEmpty = 'Está vacío';
+    isNotEmpty = 'No está vacío';
+    selectPlaceholder = 'Seleccionar...';
+    ok = 'OK';
+    columns = 'Columnas';
+    actions = 'Acciones';
+    print = 'Imprimir';
+    pkError = 'Está intentando crear un elemento que ya existe';
+
+    constructor(init?: Partial<DtMessagesEs>) {
+      if (init) {
+        Object.assign(this, init);
+      }
+    }
+  
+ }
+

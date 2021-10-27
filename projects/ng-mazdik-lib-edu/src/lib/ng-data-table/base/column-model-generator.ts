@@ -13,7 +13,7 @@ export class ColumnModelGenerator {
     frozen: true,
     resizeable: false,
     width: 1,
-    minWidth: 40,
+    minWidth: 125,
     formHidden: true,
     cellClass: 'action-cell',
     headerCellClass: 'action-cell',

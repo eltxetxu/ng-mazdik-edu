@@ -59,6 +59,10 @@
   content: "\002B";
 }
 
+.dt-icon-printer:before {
+  content: "\1F5B6";
+}
+
 /************/
 
 .dt-icon-filter {

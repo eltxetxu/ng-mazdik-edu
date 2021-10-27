@@ -7,6 +7,7 @@ export interface DataSource {
   put(row: any): Promise<any>;
   delete(row: any): Promise<any>;
   getOptions?(url: string, parentId: any): Promise<any>;
+  printItem?(row: any): void;
 }
 
 export interface RequestMetadata {

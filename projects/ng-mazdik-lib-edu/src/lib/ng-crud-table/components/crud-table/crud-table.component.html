@@ -19,7 +19,7 @@
     <i class="dt-icon-actions"></i>
   </button>-->
   <span *ngFor="let btn of actionMenu">
-    <button *ngIf="!btn.disabled" class="dt-button-actions" [ngClass]="{'cell-changed':dataManager.rowChanged(row)}" (click)="btn.command(row)" [disabled]="btn.disabled" >
+    <button *ngIf="!btn.disabled" class="dt-button-actions" [ngClass]="{'cell-changed':dataManager.rowChanged(row)}" (click)="btn.command(row)" [disabled]="btn.disabled" title="{{btn.label}}">
       <i class="{{btn.icon}}"></i>
     </button>
   </span>

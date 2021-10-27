@@ -9,7 +9,7 @@ import { ContextMenuComponent } from '../../../context-menu/context-menu.compone
 import { MenuEventArgs } from '../../../context-menu/types';
 import { DataTableComponent } from '../../../ng-data-table/components/data-table/data-table.component';
 import { Row } from '../../../ng-data-table/base/row';
-import { EventHelper, ColumnModelGenerator } from '../../../ng-data-table/base';
+import { EventHelper, ColumnModelGenerator, Column } from '../../../ng-data-table/base';
 import { MenuItem } from '../../../common';
 
 @Component({
@@ -118,7 +118,7 @@ export class CrudTableComponent implements OnInit, OnDestroy {
           id: this.dataManager.messages.delete,
           label: this.dataManager.messages.delete,
           icon: 'dt-icon dt-icon-remove',
-          command: (row) => confirm('Delete ?') ? this.dataManager.delete(row) : null,
+          command: (row) => confirm('Eliminar ?') ? this.dataManager.delete(row) : null,
         },
          {
            id: this.dataManager.messages.duplicate,
@@ -127,6 +127,24 @@ export class CrudTableComponent implements OnInit, OnDestroy {
            command: (row) => this.duplicateAction(row),
          },
       );
+
+      if (this.dataManager.service.printItem) {
+        this.actionMenu.push(
+          {            
+            id: this.dataManager.messages.print,
+            label: this.dataManager.messages.print,
+            icon: 'dt-icon dt-icon-printer',
+            command: (row) => this.printAction(row),
+          },
+        );
+      }
+
+      let ancho: number = this.actionMenu.filter(a => !a.disabled).length * 38;
+      let columna: Column = this.dataManager.columns.find(x => x.name === ColumnModelGenerator.actionColumn.name);
+      columna.width = ancho > columna.minWidth ? ancho : columna.minWidth;
+
+      this.dataManager.dimensions.recalcColumns();
+      
     }
   }
 
@@ -175,6 +193,11 @@ export class CrudTableComponent implements OnInit, OnDestroy {
     this.modalEditForm.isNewItem = true;
     this.modalEditForm.detailView = false;
     this.modalEditForm.open();
+  }
+
+  printAction(row: Row): void {
+    this.dataManager.item = row;
+    this.dataManager.service.printItem(row);
   }
 
   onPageChanged(): void  {

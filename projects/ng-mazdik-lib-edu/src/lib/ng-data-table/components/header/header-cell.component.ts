@@ -25,7 +25,7 @@ export class HeaderCellComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.width.px')
   get width(): any {
-    if (this.column.headerCellClass=='action-cell') return 135.913;
+    //if (this.column.headerCellClass=='action-cell') return 135.913;
     return this.column.width;
   }
 
